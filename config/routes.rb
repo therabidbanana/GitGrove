@@ -71,5 +71,6 @@ Gitgrove::Application.routes.draw do
       get 'failure'
     end
   end
-
+  match ':page', :controller => 'pages', :action => 'show', :page => PagesController::PAGES
+  root :to => 'pages#index'
 end

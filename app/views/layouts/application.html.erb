@@ -6,7 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 
 <head>
-  <title>GitGrove</title>
+  <title><%= t :app_name %></title>
   <%= stylesheet_link_tag 'styles' %>
   <%= csrf_meta_tag %>
   <script src="/javascripts/libs/modernizr.js"></script>
@@ -17,7 +17,7 @@
   <div id="container">
     <header id="header">
 
-      <h1>GitGrove</h1>
+      <h1><%= t :app_name %></h1>
     </header>
     <div id="main" role="main">
       <%= yield %>

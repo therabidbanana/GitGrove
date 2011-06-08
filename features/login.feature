@@ -2,7 +2,7 @@ Feature: Login With Omniauth
 
   Scenario: Show Login
     Given I am on the home page
-    When I follow "sign up or sign in"
+    When I follow "sign in"
     Then I should see a link saying "Google"
 
   Scenario: I log in with new google account and confirm
@@ -12,8 +12,9 @@ Feature: Login With Omniauth
     When I change my name to "Bob Dole"
     And I change my email to "bob@bar.com"
     And I confirm my account
-    Then I should be on the welcome page
+    Then I should be on the dashboard
     And I should see "welcome Bob Dole"
+    And I should be an admin
 
   Scenario: I log in with existing google account
     Given I am on the signin page
