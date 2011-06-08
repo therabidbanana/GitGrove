@@ -214,6 +214,7 @@ GEM
     tzinfo (0.3.27)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yettings (0.1.0)
 
 PLATFORMS
   ruby
@@ -241,3 +242,4 @@ DEPENDENCIES
   sqlite3
   taps
   thin
+  yettings

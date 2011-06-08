@@ -16,6 +16,10 @@ Then /^I should see the account confirmation page$/ do
   
 end
 
+When /^I follow the sign in link$/ do
+  click_link("Log in")
+end
+
 When /^I change my name to "([^"]*)"$/ do |arg1|
   fill_in('name', :with => arg1)
 end
@@ -35,6 +39,17 @@ Given /^user with Google account "([^"]*)" exists$/ do |arg1|
 end
 
 Then /^I should be redirected to dashboard$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see a services link saying "([^"]*)"$/ do |arg1|
+  within("#services_list") do
+    assert has_content? "Google"
+  end
+  
+end
+
+Then /^I should be an admin$/ do
   pending # express the regexp above with the code you wish you had
 end
 

@@ -2,8 +2,8 @@ Feature: Login With Omniauth
 
   Scenario: Show Login
     Given I am on the home page
-    When I follow "sign in"
-    Then I should see a link saying "Google"
+    When I follow the sign in link
+    Then I should see a services link saying "Google"
 
   Scenario: I log in with new google account and confirm
     Given I am on the signin page

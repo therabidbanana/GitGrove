@@ -1,0 +1,13 @@
+defaults: &defaults
+  oa:
+    facebook: nil
+  
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+

@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'redcarpet'
 gem 'omniauth'
 gem 'ar_openid_store'
+gem 'yettings'
 
 group :development do
   gem "taps"
