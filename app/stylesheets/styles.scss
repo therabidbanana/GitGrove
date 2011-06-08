@@ -1,0 +1,33 @@
+@import 'reset';
+
+body{
+  width: 95%;
+  margin: 1em auto;
+  @extend .afs-gentium-basic;
+}
+
+pre, code{
+  @extend .afs-inconsolata;
+}
+
+
+#main{
+}
+
+
+#header{
+  text-align: center;
+}
+
+section.services{
+
+  #services_list{
+    li{
+      display: inline-block;
+      width: 22%;
+      margin: 1%;
+      img{ vertical-align: middle; }
+    }
+  }
+}
+
