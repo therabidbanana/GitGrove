@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+  <title>GitGrove</title>
+  <%= stylesheet_link_tag 'styles' %>
+  <%= csrf_meta_tag %>
+  <script src="/javascripts/libs/modernizr.js"></script>
+  <script src="/javascripts/libs/respond.min.js"></script>
+  
+</head>
+<body id="<%= @location_id || "home" %>">
+  <div id="container">
+    <header id="header">
+
+      <h1>GitGrove</h1>
+    </header>
+    <div id="main" role="main">
+      <%= yield %>
+    </div>
+    <footer id="footer">
+
+    </footer>
+  </div> <!--! end of #container -->
+
+<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/javascripts/libs/jquery.min.js">\x3C/script>')</script>
+  <%= javascript_include_tag 'rails' %>
+</body>
+</html>
