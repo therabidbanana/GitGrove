@@ -1,0 +1,14 @@
+= form_for(@user) do |f|
+  %p
+    = f.label(:name)
+    %br
+    = f.text_field(:name)
+  %p
+    = f.label(:email)
+    %br
+    = f.text_field(:email)
+  %p
+    = f.label(:is_admin)
+    %br
+    = f.check_box(:is_admin)
+  = f.submit 'Create'

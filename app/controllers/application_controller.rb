@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
         redirect_to signin_services_path
       end
     end
+
+    def admin_only!
+      unless user_signed_in? && current_user.admin?
+        flash[:error] = 'You don\'t have admin access!'
+        redirect_to dashboard_path
+        
+      end
+    end
 end

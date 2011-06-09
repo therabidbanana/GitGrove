@@ -18,8 +18,17 @@
     <header id="header">
 
       <h1><%= t :app_name %></h1>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "Manage Users", users_path %>
+      <% end %>
     </header>
     <div id="main" role="main">
+      <% if flash[:error] %>
+        <div class="flash error"><p><%= flash[:error] %></p></div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="flash notice"><p><%= flash[:notice] %></p></div>
+      <% end %>
       <%= yield %>
     </div>
     <footer id="footer">

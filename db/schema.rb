@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608151248) do
+ActiveRecord::Schema.define(:version => 20110608185309) do
 
   create_table "open_id_associations", :force => true do |t|
     t.binary  "server_url"
@@ -37,11 +37,25 @@ ActiveRecord::Schema.define(:version => 20110608151248) do
     t.datetime "updated_at"
   end
 
+  create_table "sites", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "repo_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_admin",   :default => false
+  end
+
+  create_table "users_sites", :id => false, :force => true do |t|
+    t.integer "site_id"
+    t.integer "user_id"
   end
 
 end

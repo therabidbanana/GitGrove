@@ -1,4 +1,11 @@
 Gitgrove::Application.routes.draw do
+  resources :sites do
+    collection do
+      get 'dashboard'
+    end
+  end
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -56,11 +63,12 @@ Gitgrove::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   #
-  match "/signin" => "services#signin"
-  match "/signout" => "services#signout"
 
   match '/auth/:service/callback' => 'services#create' 
   match '/auth/failure' => 'services#failure'
+  match "/sites/dashboard", :as => :dashboard
+  match "/services/signin", :as => :signin
+  match "/services/signout", :as => :signout
 
   resources :services, :only => [:index, :create, :destroy] do
     collection do

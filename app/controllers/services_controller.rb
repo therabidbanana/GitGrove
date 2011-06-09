@@ -32,8 +32,8 @@ class ServicesController < ApplicationController
       redirect_to root_url
     else  # create account
       @newuser = User.new
-      @newuser.name = session[:authhash][:name]
-      @newuser.email = session[:authhash][:email]
+      @newuser.name = params[:name] || session[:authhash][:name]
+      @newuser.email = params[:email] || session[:authhash][:email]
       @newuser.services.build(:provider => session[:authhash][:provider], :uid => session[:authhash][:uid], :uname => session[:authhash][:name], :uemail => session[:authhash][:email])
       
       if @newuser.save!
@@ -43,7 +43,7 @@ class ServicesController < ApplicationController
         session[:service_id] = @newuser.services.first.id
         
         flash[:notice] = 'Your account has been created and you have been signed in!'
-        redirect_to root_url
+        redirect_to dashboard_url
       else
         flash[:error] = 'This is embarrassing! There was an error while creating your account from which we were not able to recover.'
         redirect_to root_url
@@ -124,7 +124,7 @@ class ServicesController < ApplicationController
             session[:service_id] = auth.id
           
             flash[:notice] = 'Signed in successfully via ' + @authhash[:provider].capitalize + '.'
-            redirect_to root_url
+            redirect_to dashboard_url
           else
             # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
             session[:authhash] = @authhash

@@ -1,3 +1,36 @@
+Given /^user with Google account "([^"]*)" exists$/ do |arg1|
+  create_google_user(arg1)
+end
+
+Given /^there are no users$/ do
+  assert User.all.size == 0
+end
+
+Given /^I am logged in as a regular user$/ do
+  u = create_google_user("test@example.com")
+  u.is_admin = false
+  u.save
+  OmniAuth.config.add_mock :google, {
+    'uid' => u.email,
+    'user_info' => {'email' => u.email, 'name' => u.email}
+    # etc.
+  }
+  visit '/auth/google'
+end
+
+Given /^I am logged in as an admin user$/ do
+  u = create_google_user("test@example.com")
+  u.is_admin = true
+  u.save
+  OmniAuth.config.add_mock :google, {
+    'uid' => u.email,
+    'user_info' => {'email' => u.email, 'name' => u.email}
+    # etc.
+  }
+  visit '/auth/google'
+end
+
+
 When /^I sign in with Google account "([^"]*)"$/ do |arg1|
  OmniAuth.config.add_mock :google, {
     'uid' => arg1,
@@ -5,15 +38,6 @@ When /^I sign in with Google account "([^"]*)"$/ do |arg1|
     # etc.
   }
   visit '/auth/google'
-end
-
-Then /^I should be redirected to the welcome page$/ do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then /^I should see the account confirmation page$/ do
-  assert has_content? "new account"
-  
 end
 
 When /^I follow the sign in link$/ do
@@ -33,23 +57,28 @@ When /^I confirm my account$/ do
   click_button("commit")
 end
 
+When /^I confirm my account with "([^"]*)" and "([^"]*)"$/ do |name, email|
+  fill_in('name', :with => name)
+  fill_in('email', :with => email)
 
-Given /^user with Google account "([^"]*)" exists$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  click_button("commit")
 end
 
-Then /^I should be redirected to dashboard$/ do
-  pending # express the regexp above with the code you wish you had
-end
 
 Then /^I should see a services link saying "([^"]*)"$/ do |arg1|
   within("#services_list") do
-    assert has_content? "Google"
+    assert has_content? arg1
   end
   
 end
 
+Then /^I should see the account confirmation page$/ do
+  assert has_content? "new account"
+  
+end
+
+
 Then /^I should be an admin$/ do
-  pending # express the regexp above with the code you wish you had
+  assert has_content? "Manage Users"
 end
 

@@ -4,9 +4,11 @@ defaults: &defaults
   
 development:
   <<: *defaults
+  repo_storage_path: <%= Rails.root %>/git_sites
 
 test:
   <<: *defaults
+  repo_storage_path: /tmp/git_sites
 
 production:
   <<: *defaults

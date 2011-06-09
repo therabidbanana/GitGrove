@@ -1,0 +1,8 @@
+%p Here's a list of users
+%ul#user_list
+  - @users.each do |u|
+
+    %li
+      = u.name
+      = link_to('Delete', user_path(u), :confirm => 'Are you sure?', :method => :delete) unless u == current_user
+= link_to 'Add another?', new_user_path
