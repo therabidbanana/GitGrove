@@ -5,8 +5,9 @@
     - @sites.each do |s|
       .site
         %p= s.name
-        %p= s.repo_path
-        = link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
+        - if(current_user.admin?)
+          %p= s.repo_path
+          = link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
   - if current_user.admin?
     = link_to 'Create New Site', new_site_path
 
