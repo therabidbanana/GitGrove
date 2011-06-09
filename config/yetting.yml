@@ -1,10 +1,10 @@
 defaults: &defaults
+  repo_storage_path: <%= Rails.root %>/git_sites
   oa:
     facebook: nil
   
 development:
   <<: *defaults
-  repo_storage_path: <%= Rails.root %>/git_sites
 
 test:
   <<: *defaults
