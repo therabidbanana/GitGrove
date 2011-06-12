@@ -22,5 +22,5 @@ class SitesController < ApplicationController
     site.destroy
     redirect_to dashboard_path
   end
-
+  
 end

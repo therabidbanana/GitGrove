@@ -13,10 +13,22 @@ gem 'grit'
 gem 'nanoc'
 gem 'thin'
 gem 'jquery-rails'
-gem 'redcarpet'
 gem 'omniauth'
 gem 'ar_openid_store'
 gem 'yettings'
+
+gem 'kramdown'
+gem 'deadweight'
+gem 'rainpress'
+gem 'typogruby'
+gem 'jsmin'
+gem 'builder'
+gem 'rack'
+gem 'adsf'
+gem 'nanoc-cachebuster'
+gem 'coffee-script'
+gem 'sass'
+
 
 group :development do
   gem "taps"

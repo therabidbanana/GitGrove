@@ -1,4 +1,5 @@
 Gitgrove::Application.routes.draw do
+  match "*path" => NanocServer.new, :constraints => Site
   resources :sites do
     collection do
       get 'dashboard'
@@ -80,5 +81,6 @@ Gitgrove::Application.routes.draw do
     end
   end
   match ':page', :controller => 'pages', :action => 'show', :page => PagesController::PAGES
+  
   root :to => 'pages#index'
 end

@@ -1,5 +1,6 @@
 defaults: &defaults
   repo_storage_path: <%= Rails.root %>/git_sites
+  preview_storage_path: <%= Rails.root %>/site_preview
   oa:
     facebook: nil
   
@@ -8,7 +9,9 @@ development:
 
 test:
   <<: *defaults
-  repo_storage_path: /tmp/git_sites
+  repo_storage_path: /tmp/gitgrovesites
+  preview_storage_path: /tmp/gitgrovepreview
+
 
 production:
   <<: *defaults
