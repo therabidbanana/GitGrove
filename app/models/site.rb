@@ -33,19 +33,6 @@ class Site < ActiveRecord::Base
     "#{Yetting.preview_storage_path}/#{self.url}"
   end
 
-  def self.matches?(request)
-    first_path_part = request.fullpath.split('/')[1]
-    s = ::Site.find_by_url(first_path_part)
-    s = ::Site.find_by_url(request.host.split('.').first) unless s
-    if(s)
-      request.env['gitgrove_site_url'] = s.url
-      request.params['site_url'] = s.url
-      true
-    else
-      false
-    end
-  end
-
   def build!
     Dir.chdir(preview_path) do
       system "nanoc co"

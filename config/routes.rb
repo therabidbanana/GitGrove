@@ -1,8 +1,12 @@
 Gitgrove::Application.routes.draw do
-  match "*path" => NanocServer.new, :constraints => Site
+  match "*path" => NanocServer.new, :constraints => SitesController.new
   resources :sites do
     collection do
       get 'dashboard'
+      get 'rebuild'
+    end
+    member do
+      get 'rebuild'
     end
   end
   resources :users

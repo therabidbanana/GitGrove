@@ -36,6 +36,7 @@ class ServicesController < ApplicationController
       @newuser.email = params[:email] || session[:authhash][:email]
       @newuser.services.build(:provider => session[:authhash][:provider], :uid => session[:authhash][:uid], :uname => session[:authhash][:name], :uemail => session[:authhash][:email])
       
+      session.delete :authhash
       if @newuser.save!
         # signin existing user
         # in the session his user id and the service id used for signing in is stored
@@ -55,6 +56,7 @@ class ServicesController < ApplicationController
   def signout 
     if current_user
       session[:user_id] = nil
+      
       session[:service_id] = nil
       session.delete :user_id
       session.delete :service_id
