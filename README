@@ -11,5 +11,14 @@ a git user on your server to log in and push changes to the repos.
 There is a configuration setting to allow you to set the storage path of repos,
 we recommend you store them in your git user's home directory.
 
+The Rails app will automatically set up a git hook (post-receive) to rebuild the nanoc site 
+on a git push. The hook relies on curl, which you may need to install.
 
+
+## Nanoc Building
+
+
+To build, Nanoc is called from a shell chdir'd into a special site_preview folder.
+
+Currently builds block the ui until the build is completed, so for big sites you may have issues.
 

@@ -29,8 +29,9 @@ module GitHelpers
   end
 
   def working_clone_for(site)
-    clone = Grit::Git.new('/tmp/').clone({}, site.repo_path, "/tmp/gitgrovetest/#{site.url}")
-    clone
+    Dir.chdir('/tmp/gitgrovetest/') do
+      `git clone #{site.repo_path}`
+    end
   end
 
 

@@ -4,6 +4,17 @@ Given /^I have the following sites:$/ do |table|
     Site.create(h)
   end
 end
+
+Given /^I have created the following sites:$/ do |table|
+  # table is a Cucumber::Ast::Table
+  table.hashes.each do |h|
+    visit '/sites/new'
+    fill_in('site[name]', :with => h[:name])
+    fill_in('site[url]', :with => h[:url])
+    click_on("Create")
+  end
+end
+
 Given /^a template repo exists$/ do
   create_template_repo
 end

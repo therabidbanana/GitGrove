@@ -24,13 +24,16 @@ When /^I commit and push changes to "([^"]*)"$/ do |site|
   clone = find_clone(site)
   commit_all_changes(clone_path(site))
   push_changes(clone_path(site))
+  real_site = Site.find_by_url(site)
+  # Force rebuild
+  visit rebuild_site_path(real_site, :token => real_site.rebuild_token)
 end
 
 When /^I visit the preview site for "([^"]*)"$/ do |arg1|
-  visit "/#{arg1}/"
+  visit "/#{arg1}/index.html"
 end
 
 Then /^the page should include "([^"]*)" as a header$/ do |arg1|
-  page.should have_css('h2', :content => arg1)
+  page.should have_css('h1,h2', :content => arg1)
 end
 

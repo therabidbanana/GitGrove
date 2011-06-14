@@ -2,10 +2,13 @@ require 'grit'
 require 'fileutils'
 class Site < ActiveRecord::Base
   has_and_belongs_to_many :users, :join_table => :users_sites
+  
   after_create :setup_repo
   before_destroy :remove_repo
 
   def setup_repo
+    self.rebuild_token = rand(36**8).to_s(36)
+
     self.repo_path = "#{Yetting.repo_storage_path}/#{self.url}.git"
     clone = "#{Yetting.repo_storage_path}/_template_site.git"
     
@@ -14,6 +17,7 @@ class Site < ActiveRecord::Base
     else
       Grit::Repo.init_bare(self.repo_path)
     end
+
 
     if(!File.exists?(preview_path))
       FileUtils.mkdir(Yetting.preview_storage_path) if(!File.exists?(Yetting.preview_storage_path))
@@ -24,7 +28,9 @@ class Site < ActiveRecord::Base
     self.save
     build!
   end
-
+  
+ 
+  
   def remove_repo
     FileUtils.rm_rf(self.repo_path) if self.repo_path
   end
@@ -35,7 +41,7 @@ class Site < ActiveRecord::Base
 
   def build!
     Dir.chdir(preview_path) do
-      system "nanoc co"
+      system "nanoc co &>/dev/null"
     end
   end
 end

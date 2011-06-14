@@ -12,6 +12,16 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     if(@site.save)
+      # Fix hook
+      hook_name = File.join(@site.repo_path, 'hooks', 'post-receive')
+      rebuild_url = rebuild_site_url(@site, :token => @site.rebuild_token, :only_path => false)
+      text = File.read(hook_name)
+      
+      text.gsub!(/REBUILD_URL/, rebuild_url)
+      File.open(hook_name, "w") {|file| file.puts text}
+      File.chmod(0755, hook_name)
+
+
       redirect_to dashboard_path
     else
       redirect_to dashboard_path
@@ -20,9 +30,14 @@ class SitesController < ApplicationController
 
   def rebuild
     @site = Site.find_by_id(params[:id])
+    unless params[:token] == @site.rebuild_token
+      redirect_to(dashboard_path) and return
+    end
     @site.build!
-    render 
+    render :text => 'Rebuild successful!'
   end
+
+
   def destroy
     site = Site.find_by_id(params[:id])
     site.destroy
@@ -37,7 +52,6 @@ class SitesController < ApplicationController
     s = Site.find_by_url(request.host.split('.').first) unless s
     if(s)
       request.env['gitgrove_site_url'] = s.url
-      request.env['gitgrove_user_id'] = request.session[:user_id]
       request.params['site_url'] = s.url
       true
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110608185309) do
+ActiveRecord::Schema.define(:version => 20110613174649) do
 
   create_table "open_id_associations", :force => true do |t|
     t.binary  "server_url"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20110608185309) do
     t.string   "repo_path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "rebuild_token"
   end
 
   create_table "users", :force => true do |t|

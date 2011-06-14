@@ -3,7 +3,6 @@ Gitgrove::Application.routes.draw do
   resources :sites do
     collection do
       get 'dashboard'
-      get 'rebuild'
     end
     member do
       get 'rebuild'

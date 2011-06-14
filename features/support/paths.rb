@@ -19,7 +19,9 @@ module NavigationHelpers
 
     when /users page/
       '/users'
-
+    
+    when /the rebuild url for "(.*)"/
+      rebuild_site_path(Site.find_by_url($1))
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

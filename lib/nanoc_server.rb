@@ -1,9 +1,6 @@
 class NanocServer
   def call(env)
-    resp = authenticate_user!(Rack::Request.new(env))
-    unless resp == nil
-      return resp.finish
-    end
+    
     site = Site.find_by_url(env['gitgrove_site_url'])
 
     env['PATH_INFO'] = env['PATH_INFO'].gsub(/^\/#{site.url}/, '')

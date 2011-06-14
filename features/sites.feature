@@ -2,6 +2,7 @@ Feature: Sites List
   In order to manage websites
   Background:
     Given I have a cleaned out site directory
+    And I have a working site template
 
   Scenario: I try to go to the dashboard without authenticating
     When I go to the dashboard

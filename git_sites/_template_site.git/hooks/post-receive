@@ -13,3 +13,6 @@
 # rename the file to "post-receive".
 
 #. /usr/share/doc/git-core/contrib/hooks/post-receive-email
+
+curl REBUILD_URL
+
