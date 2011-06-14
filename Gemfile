@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'ar_openid_store'
 gem 'yettings'
+gem 'stinker', :git => 'git://github.com/therabidbanana/stinker.git'
 
 gem 'kramdown'
 gem 'deadweight'
@@ -28,6 +29,7 @@ gem 'adsf'
 gem 'nanoc-cachebuster'
 gem 'coffee-script'
 gem 'sass'
+
 
 
 group :development do
