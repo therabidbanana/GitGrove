@@ -22,7 +22,7 @@ class NanocServer
     if !current_user(req)
       #flash[:error] = 'You need to sign in before accessing this page!'
       resp = Rack::Response.new
-      resp.redirect("http://local.host:9292/services/signin")
+      resp.redirect("http://localhost:9292/services/signin")
       resp
     else 
       nil

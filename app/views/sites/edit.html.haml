@@ -1,2 +1,5 @@
-- @repo.editable_pages.each do |page|
-  %p= page.title
+- @repo.pages.each do |page|
+
+  .file
+    %h1= page.title
+    %h2 (#{page.path.gsub(/^content\//, '')})

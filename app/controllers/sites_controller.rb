@@ -30,7 +30,7 @@ class SitesController < ApplicationController
 
   def edit
     @site = Site.find_by_id(params[:id])
-    
+    @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
   end
 
   def rebuild
@@ -39,7 +39,7 @@ class SitesController < ApplicationController
       redirect_to(dashboard_path) and return
     end
     @site.build!
-    render :text => 'Rebuild successful!'
+    render :text => "Rebuild successful!\n"
   end
 
 

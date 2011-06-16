@@ -9,6 +9,7 @@
           %p= s.repo_path
           = link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
         = link_to 'Edit', edit_site_path(s) 
+        %a{:href => "http://#{with_subdomain(s.url)}/index.html"} Preview
   - if current_user.admin?
     = link_to 'Create New Site', new_site_path
 
