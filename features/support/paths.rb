@@ -22,6 +22,8 @@ module NavigationHelpers
     
     when /the rebuild url for "(.*)"/
       rebuild_site_path(Site.find_by_url($1))
+    when /the edit "(.*)" dashboard/
+      site_documents_path(Site.find_by_url($1).id)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

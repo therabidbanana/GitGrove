@@ -28,11 +28,6 @@ class SitesController < ApplicationController
     end
   end
 
-  def edit
-    @site = Site.find_by_id(params[:id])
-    @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
-  end
-
   def rebuild
     @site = Site.find_by_id(params[:id])
     unless params[:token] == @site.rebuild_token

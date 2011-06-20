@@ -14,3 +14,13 @@ Feature: Site Editor
     Then I should see a list of site files:
       | filename |
       | index.md |
+
+  Scenario: I edit a page
+    Given I am on the edit "cf" dashboard
+    When I click on "index"
+    And I fill out the page with content
+      """
+        this is my new content
+      """
+    And I visit the "cf" preview site
+    Then I should see "this is my new content"

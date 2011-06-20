@@ -7,6 +7,7 @@ Gitgrove::Application.routes.draw do
     member do
       get 'rebuild'
     end
+    resources :documents, :constraints => {:id => /.+/}
   end
   resources :users
 

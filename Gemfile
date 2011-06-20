@@ -17,6 +17,8 @@ gem 'omniauth'
 gem 'ar_openid_store'
 gem 'yettings'
 gem 'stinker', :git => 'git://github.com/therabidbanana/stinker.git'
+gem 'mustache'
+gem 'mustache_rails3'
 
 gem 'kramdown'
 gem 'deadweight'
