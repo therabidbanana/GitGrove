@@ -1,5 +1,5 @@
 - @repo.pages.each do |page|
 
   .file
-    %h1= link_to(page.title, edit_site_document_path(@site, page.path))
+    %h1= link_to(page.title, edit_site_document_path(@site, page.name))
     %h2 (#{page.path.gsub(/^content\//, '')})
