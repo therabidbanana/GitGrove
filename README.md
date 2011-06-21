@@ -19,6 +19,18 @@ we recommend you store them in your git user's home directory.
 The Rails app will automatically set up a git hook (post-receive) to rebuild the nanoc site 
 on a git push. The hook relies on curl, which you may need to install.
 
+Each new repo is cloned from a template named _template_site.git in the
+same directory as all the other sites belong. (Default: Rails.root + 
+'/gitsites'). A default template is included for testing (based on 
+https://github.com/avdgaag/nanoc-template
+), but you could set up any nanoc site as your default template.
+
+Make sure to add a post-recieve hook that looks like this: 
+
+```
+  curl REBUILD_URL
+```
+
 
 ## Nanoc Building
 
