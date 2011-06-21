@@ -3,7 +3,7 @@
 <form name="gollum-editor" action="/create" method="post">
 {{/is_create_page}}
 {{#is_edit_page}}
-<form name="gollum-editor" action="{{edit_document_path}}" method="post">
+{{{edit_document_form_tag}}}
 {{/is_edit_page}}
   <fieldset id="gollum-editor-fields">
   {{#is_create_page}}
@@ -14,7 +14,6 @@
   {{/is_create_page}}
   {{#is_edit_page}}
   <input type="hidden" name="page" id="gollum-editor-page-title" value="{{page_name}}">
-  <input type="hidden" name="_method" value="PUT">
   {{/is_edit_page}}
 
   <div id="gollum-editor-function-bar">

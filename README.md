@@ -3,6 +3,11 @@
 An easy way to host multiple Nanoc sites that auto update on git push and even
 have a simple online interface for quick updates when you're away from your editor.
 
+Note that as this project relies on Nanoc, and `nanoc compile` allows arbitrary 
+code added to a lib dir, this may not be safe for environments where you don't trust
+the people with Git access. The frontend interface only allows changes to content
+items.
+
 ## Additional Setup
 
 Sites are stored as repos, so you will need access to those repos. You can set up
@@ -21,4 +26,10 @@ on a git push. The hook relies on curl, which you may need to install.
 To build, Nanoc is called from a shell chdir'd into a special site_preview folder.
 
 Currently builds block the ui until the build is completed, so for big sites you may have issues.
+
+As the `nanoc compile` command is executed from a subshell, the gems installed with 
+the rails application will take priority over the Gemfile included with any nanoc site.
+If you have multiple gemsets, add any necessary gems to build your Nanoc sites to the 
+GitGrove Gemfile.
+
 

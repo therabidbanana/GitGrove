@@ -38,6 +38,10 @@ class Documents::Edit < Mustache::Rails
     site_document_path(@site, page.name)
   end
 
+  def edit_document_form_tag
+    form_tag(edit_document_path, :method => :put, :name => 'gollum-editor')
+  end
+
   def sidebar
     if @sidebar.nil?
       if page = @page.sidebar

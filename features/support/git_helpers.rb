@@ -6,9 +6,14 @@ module GitHelpers
   def clean_out_sites_dir
     FileUtils.rm_rf(Yetting.repo_storage_path)
     FileUtils.rm_rf('/tmp/gitgrovetest')
+    FileUtils.rm_rf(Yetting.preview_storage_path)
+
 
     FileUtils.mkdir(Yetting.repo_storage_path)
     FileUtils.mkdir('/tmp/gitgrovetest')
+    FileUtils.mkdir(Yetting.preview_storage_path)
+
+
 
   end
   def create_template_repo

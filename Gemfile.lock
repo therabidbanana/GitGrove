@@ -110,7 +110,7 @@ GEM
       thor (~> 0.14)
     jsmin (1.0.1)
     json (1.5.2)
-    json_pure (1.5.2)
+    json_pure (1.5.3)
     kramdown (0.13.3)
     launchy (0.4.0)
       configuration (>= 0.0.5)
@@ -264,7 +264,7 @@ DEPENDENCIES
   ar_openid_store
   builder
   capybara (>= 0.4.0)
-  capybara-webkit
+  capybara-webkit (~> 0.5.0)
   coffee-script
   cucumber
   cucumber-rails

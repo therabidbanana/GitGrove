@@ -48,7 +48,7 @@ group :test do
   
   gem "cucumber"
   # gem 'akephalos' #, :git => 'git://github.com/thoughtbot/akephalos.git'
-  gem "capybara-webkit"
+  gem "capybara-webkit", "~> 0.5.0"
   gem "cucumber-rails"
   gem "capybara", ">= 0.4.0"
   gem "launchy"

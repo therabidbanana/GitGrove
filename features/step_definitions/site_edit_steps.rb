@@ -1,10 +1,15 @@
 When /^I fill out the page with content$/ do |string|
-  fill_in("page[content]", string)
-  click_on "Submit"
+  @my_content = string
+  fill_in("content", :with => string)
+  click_on "Save"
 end
 
 When /^I visit the "([^"]*)" preview site$/ do |arg1|
   visit "/#{arg1}/index.html"
+end
+
+Then /^I should see my new content$/ do
+  page.should have_content(@my_content.strip)
 end
 
 

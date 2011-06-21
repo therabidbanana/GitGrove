@@ -23,4 +23,4 @@ Feature: Site Editor
         this is my new content
       """
     And I visit the "cf" preview site
-    Then I should see "this is my new content"
+    Then I should see "this is my new"
