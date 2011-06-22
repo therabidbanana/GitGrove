@@ -91,3 +91,15 @@ Then /^I should be an admin$/ do
   assert has_content? "Manage Users"
 end
 
+When /^I try to log in with the token "([^"]*)"$/ do |arg1|
+  visit "/auth/token?token=#{arg1}"
+end
+
+
+
+Given /^user with token "([^"]*)" exists$/ do |arg1|
+  u = User.create(:name => 'Test', :email => 'test@example.com')
+  User.first.services.first.uid = arg1
+  u.save
+end
+

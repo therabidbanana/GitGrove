@@ -39,6 +39,11 @@ Feature: Login With Omniauth
     Then I should be on the home page
     And I should see "You do not appear to have an account"
 
+  Scenario: I log in with token
+    Given user with token "foobar" exists
+    When I try to log in with the token "foobar"
+    Then I should be on the dashboard
+
   Scenario: Sign out
     Given I am logged in as an admin user
     And I am on the dashboard
