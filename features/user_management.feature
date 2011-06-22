@@ -16,16 +16,13 @@ Feature: User Management
   Scenario: I should not be able to delete myself
     When I go to the users page
     Then I should see 1 delete link
-
-  Scenario: I should be able to make admin
-    When I go to the users page
-    Then I should see 1 "make admin" link
-
+  
   Scenario: I create a new user
     When I go to the users page
     And I click on "Add another?"
     And I fill in user info:
-      | name  | email         | is_admin |
-      | David | david@osb.co  | true     |
+      | name  | email              | is_admin |
+      | David | david@example.com  | true     |
     And I press "Create"
     Then I should see a list with 3 users
+    And I should see a login link for "david@example.com"
