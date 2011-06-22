@@ -44,6 +44,15 @@ When /^I follow the sign in link$/ do
   click_link("Log in")
 end
 
+When /^I follow the sign out link$/ do
+  click_link("Log out")
+end
+
+Then /^I should no longer be logged in$/ do
+  page.should have_content('You have been signed out')
+end
+
+
 When /^I change my name to "([^"]*)"$/ do |arg1|
   fill_in('name', :with => arg1)
 end

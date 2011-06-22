@@ -26,7 +26,7 @@ class ServicesController < ApplicationController
 
   # POST from signup view
   def newaccount
-    if params[:commit] == "Cancel"
+    if params[:commit] == "Cancel" || User.all.count > 0
       session[:authhash] = nil
       session.delete :authhash
       redirect_to root_url
@@ -129,8 +129,13 @@ class ServicesController < ApplicationController
             redirect_to dashboard_url
           else
             # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
-            session[:authhash] = @authhash
-            render signup_services_path
+            if(User.all.count > 0)
+              flash[:notice] = 'You do not appear to have an account.'
+              redirect_to root_url
+            else
+              session[:authhash] = @authhash
+              render signup_services_path
+            end
           end
         end
       else

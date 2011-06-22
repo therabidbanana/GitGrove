@@ -30,7 +30,6 @@ When /^I commit and push changes to "([^"]*)"$/ do |site|
 end
 
 When /^I visit the preview site for "([^"]*)"$/ do |arg1|
-  sleep 1
   visit "/#{arg1}/index.html"
 end
 

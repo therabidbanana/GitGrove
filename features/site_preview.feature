@@ -1,6 +1,7 @@
 Feature: Site Preview
   Background:
-    Given I have a working site template
+    Given I have a cleaned out sites directory
+    And I have a working site template
     And I am logged in as an admin user
     And I have created the following sites:
       | name   |  url      |

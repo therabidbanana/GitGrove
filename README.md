@@ -31,6 +31,10 @@ Make sure to add a post-recieve hook that looks like this:
   curl REBUILD_URL
 ```
 
+The REBUILD_URL will be replaced with a url allowing the site to be
+rebuilt whenever you create a new clone. Set the hook as non-executable
+to avoid errors when pushing changes to _template_site. 
+
 
 ## Nanoc Building
 
@@ -43,5 +47,17 @@ As the `nanoc compile` command is executed from a subshell, the gems installed w
 the rails application will take priority over the Gemfile included with any nanoc site.
 If you have multiple gemsets, add any necessary gems to build your Nanoc sites to the 
 GitGrove Gemfile.
+
+## Nanoc Preview
+
+Previews are available at subdomains of the main app. This can be
+a little tricky to set up in testing environments - /etc/hosts isn't
+enough to handle dynamic subdomains. You'll either need to manually 
+add them, or install a local dns server like dnsmasq.
+
+Previews can also be accessed by including the subdomain as part of the
+path (localhost/mysubdomain/index.html instead of
+mysubdomain.localhost/index.html), but this is unreliable, and
+assets that are linked to with absolute links won't work.
 
 

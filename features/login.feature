@@ -32,3 +32,17 @@ Feature: Login With Omniauth
     Then I should be on the dashboard
     And I should see "welcome Bob Dole"
 
+  Scenario: I try to register after admin
+    Given user with Google account "david@osb.co" exists
+    And I am on the signin page
+    When I sign in with Google account "foo@bar.com"
+    Then I should be on the home page
+    And I should see "You do not appear to have an account"
+
+  Scenario: Sign out
+    Given I am logged in as an admin user
+    And I am on the dashboard
+    When I follow the sign out link
+    Then I should be on the home page
+    And I should no longer be logged in
+

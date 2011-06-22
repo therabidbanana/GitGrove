@@ -17,6 +17,10 @@ Feature: User Management
     When I go to the users page
     Then I should see 1 delete link
 
+  Scenario: I should be able to make admin
+    When I go to the users page
+    Then I should see 1 "make admin" link
+
   Scenario: I create a new user
     When I go to the users page
     And I click on "Add another?"

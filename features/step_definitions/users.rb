@@ -28,5 +28,12 @@ Then /^I should see (\d+) delete links?$/ do |count|
   end
 end
 
+Then /^I should see (\d+) "(.*)" links?$/ do |count, text|
+  if count.to_i == 0
+    page.should_not have_css("ul#user_list li a", :content => text)
+  else
+    page.should have_css("ul#user_list li a", :count => count.to_i, :content => text)
+  end
+end
 
 
