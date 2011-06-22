@@ -42,8 +42,7 @@ class Site < ActiveRecord::Base
   def build!
     Dir.chdir(preview_path) do
       system "git pull &>/dev/null"
-      system "rm -rf tmp"
-      system "nanoc co &>/dev/null"
+      system "nanoc3 co &>/dev/null"
     end
   end
 end

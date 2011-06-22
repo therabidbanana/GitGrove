@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
       self.is_admin = true
       self.save
     end
+    create_token
+  end
+
+  def create_token
+    self.services.create(:provider => :token, :uid => rand(36**8).to_s(36))
   end
 
   def admin?

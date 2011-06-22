@@ -7,6 +7,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 require File.expand_path('../../lib/nanoc_server', __FILE__)
+require File.expand_path('../../lib/token_strategy', __FILE__)
 
 module Gitgrove
   class Application < Rails::Application

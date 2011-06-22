@@ -57,6 +57,7 @@ Gitgrove::Application.configure do
     # provider :twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
     # provider :github, 'CLIENT ID', 'SECRET'
 
+    provider OmniAuth::Strategies::Token, :token 
     # generic openid
     provider :openid, ActiveRecordStore.new, :name => 'openid'
 
