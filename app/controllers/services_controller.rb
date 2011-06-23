@@ -99,6 +99,7 @@ class ServicesController < ApplicationController
         omniauth['uid'] ? @authhash[:uid] = omniauth['uid'].to_s : @authhash[:uid] = ''
         omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
       elsif ['token']
+        @authhash[:uid] = omniauth['uid'] ||= ''
         omniauth['provider'] ? @authhash[:provider] = omniauth['provider'] : @authhash[:provider] = ''
       else        
         # debug to output the hash that has been returned when adding new services
@@ -112,12 +113,15 @@ class ServicesController < ApplicationController
 
         # if the user is currently signed in, he/she might want to add another account to signin
         if user_signed_in?
+          
           if auth
             flash[:notice] = 'Your account at ' + @authhash[:provider].capitalize + ' is already connected with this site.'
             redirect_to services_path
-          else
-            current_user.services.create!(:provider => @authhash[:provider], :uid => @authhash[:uid], :uname => @authhash[:name], :uemail => @authhash[:email])
+          elsif @authhash[:provider] != 'token'
+            current_user.services.create!(:provider => @authhash[:provider], :uid => @authhash[:uid], :uname => @authhash[:name], :uemail => @authhash[:email]) 
             flash[:notice] = 'Your ' + @authhash[:provider].capitalize + ' account has been added for signing in at this site.'
+            redirect_to services_path
+          else
             redirect_to services_path
           end
         else

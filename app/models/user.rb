@@ -14,7 +14,11 @@ class User < ActiveRecord::Base
   end
 
   def create_token
-    self.services.create(:provider => :token, :uid => rand(36**8).to_s(36))
+    self.services.create(:provider => 'token', :uid => rand(36**8).to_s(36))
+  end
+
+  def token
+    self.services.find_by_provider('token').uid
   end
 
   def admin?

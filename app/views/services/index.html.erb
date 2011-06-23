@@ -15,7 +15,8 @@
 			  </div>
 			
 			  <div class="service_userdata">
-			    <% if service.uid.starts_with?('http') %>
+          
+			  <% if service.uid.starts_with?('http') %>
 					<%= service.uid.scan(/http[s]*:\/\/.*?\//)[0] %>
 				<% else %>
 					<%= service.provider.capitalize %>: <%= service.uid %>

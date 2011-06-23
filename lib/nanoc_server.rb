@@ -1,3 +1,5 @@
+require 'adsf'
+
 class NanocServer
   def call(env)
     
@@ -6,7 +8,8 @@ class NanocServer
     env['PATH_INFO'] = env['PATH_INFO'].gsub(/^\/#{site.url}/, '')
     
     @dir_app = Rack::Directory.new(File.join(site.preview_path, 'output'))
-    @dir_app.call(env)
+    @index_app = Adsf::Rack::IndexFileFinder.new(@dir_app, :root => File.join(site.preview_path, 'output'))
+    @index_app.call(env)
   end
 
 

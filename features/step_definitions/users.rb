@@ -22,18 +22,22 @@ end
 
 Then /^I should see (\d+) delete links?$/ do |count|
   if count.to_i == 0
-    page.should_not have_css("ul#user_list li a", :content => 'Delete')
+    page.should_not have_css("ul#user_list li a.delete", :content => 'Delete')
   else
-    page.should have_css("ul#user_list li a", :count => count.to_i, :content => 'Delete')
+    page.should have_css("ul#user_list li a.delete", :count => count.to_i, :content => 'Delete')
   end
 end
 
 Then /^I should see (\d+) "(.*)" links?$/ do |count, text|
   if count.to_i == 0
-    page.should_not have_css("ul#user_list li a", :content => text)
+    page.should_not have_css("ul#user_list li a.#{text.downcase}", :content => text)
   else
-    page.should have_css("ul#user_list li a", :count => count.to_i, :content => text)
+    page.should have_css("ul#user_list li a.#{text.downcase}", :count => count.to_i, :content => text)
   end
 end
 
+
+Then /^I should see a login link for "([^"]*)"$/ do |arg1|
+  page.should have_css("ul#user_list li a.login_url", :content => '?token=')
+end
 

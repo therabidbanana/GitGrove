@@ -18,6 +18,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+    @user.update_attributes(params[:user])
+    if(@user.save)
+      redirect_to users_path
+    else
+      redirect_to users_path
+    end
+  end
   def show
     @user = User.find_by_id(params[:id])
     render 'users/edit'
