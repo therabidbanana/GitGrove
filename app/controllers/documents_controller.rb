@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
     @page = @repo.page(params[:id])
     @meta = {'title' => params[:page_title]}
     @repo.update_page_with_meta(@page, @page.name, @page.format, params[:content], @meta, commit_for(@page))
-    @site.build!
+    @site.start_build!
     redirect_to site_documents_path(@site)
   end
 

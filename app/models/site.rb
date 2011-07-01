@@ -6,6 +6,28 @@ class Site < ActiveRecord::Base
   after_create :setup_repo
   before_destroy :remove_repo
 
+  state_machine :initial => :unbuilt do
+    after_transition any => :queued do |site, trans| 
+      Delayed::Job.enqueue(SiteBuildJob.new(site))
+    end
+
+    event :queue_build do
+      transition [:unbuilt, :built, :error] => :queued
+    end
+
+    event :dequeue do
+      transition :queued => :building
+    end
+
+    event :finish do
+      transition :building => :built
+    end
+
+    event :exception do
+      transition any => :error
+    end
+  end
+
   def setup_repo
     self.rebuild_token = rand(36**8).to_s(36)
 
@@ -26,8 +48,10 @@ class Site < ActiveRecord::Base
     end
 
     self.save
-    build!
+    start_build!
   end
+
+    
   
  
   
@@ -39,10 +63,33 @@ class Site < ActiveRecord::Base
     "#{Yetting.preview_storage_path}/#{self.url}"
   end
 
-  def build!
-    Dir.chdir(preview_path) do
-      system "git pull &>/dev/null"
-      system "nanoc3 co &>/dev/null"
-    end
+  def start_build!
+    self.queue_build if self.can_queue_build?
   end
 end
+
+class SiteBuildJob < Struct.new(:site)
+  def perform
+    Dir.chdir(site.preview_path) do
+      system "git pull"
+      system "nanoc3 co"
+    end
+  end
+
+  def before(job)
+    site.dequeue
+  end
+
+  def success(job)
+    site.finish
+  end
+
+  def error(job, exception)
+    site.exception
+  end
+
+  def failure
+    site.exception
+  end
+end
+

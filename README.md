@@ -48,6 +48,11 @@ the rails application will take priority over the Gemfile included with any nano
 If you have multiple gemsets, add any necessary gems to build your Nanoc sites to the 
 GitGrove Gemfile.
 
+
+You must run a delayed job work to get builds. A procfile is provided
+for testing so you can run the server and worker process with a single
+command: `foreman start`
+
 ## Nanoc Preview
 
 Previews are available at subdomains of the main app. This can be

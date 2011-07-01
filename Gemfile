@@ -11,7 +11,7 @@ gem 'sass'
 gem 'haml'
 gem 'grit'
 gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git'
-gem 'thin'
+gem 'unicorn'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'ar_openid_store'
@@ -31,11 +31,13 @@ gem 'adsf'
 gem 'nanoc-cachebuster'
 gem 'coffee-script'
 gem 'sass'
-
+gem 'delayed_job'
+gem 'state_machine'
 
 
 group :development do
   gem "taps"
+  gem 'foreman'
   gem "annotate-models"
 end
 

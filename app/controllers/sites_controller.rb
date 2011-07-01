@@ -33,7 +33,7 @@ class SitesController < ApplicationController
     unless params[:token] == @site.rebuild_token
       redirect_to(dashboard_path) and return
     end
-    @site.build!
+    @site.start_build!
     render :text => "Rebuild successful!\n"
   end
 
