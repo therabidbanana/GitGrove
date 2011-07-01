@@ -9,13 +9,16 @@ class DocumentsController < ApplicationController
   def edit
     @site = Site.find_by_id(params[:site_id])
     @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
+    
     @page = @repo.page(params[:id])
+    @meta = @page.meta_data
   end
   def update
     @site = Site.find_by_id(params[:site_id])
     @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
     @page = @repo.page(params[:id])
-    @repo.update_page(@page, @page.name, @page.format, params[:content], commit_for(@page))
+    @meta = {'title' => params[:page_title]}
+    @repo.update_page_with_meta(@page, @page.name, @page.format, params[:content], @meta, commit_for(@page))
     @site.build!
     redirect_to site_documents_path(@site)
   end
