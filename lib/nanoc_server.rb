@@ -13,25 +13,5 @@ class NanocServer
   end
 
 
-  def current_user(request)
-    @current_user ||= User.find_by_id(request.env['gitgrove_user_id']) if request.env['gitgrove_user_id']  
-  end
-  
-  def user_signed_in?
-    return 1 if current_user 
-  end
-    
-  def authenticate_user!(req)
-    if !current_user(req)
-      #flash[:error] = 'You need to sign in before accessing this page!'
-      resp = Rack::Response.new
-      resp.redirect("http://localhost:9292/services/signin")
-      resp
-    else 
-      nil
-    end
-  end
-
-
 end
 

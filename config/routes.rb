@@ -86,5 +86,5 @@ Gitgrove::Application.routes.draw do
   end
   match ':page', :controller => 'pages', :action => 'show', :page => PagesController::PAGES
   
-  root :to => 'pages#index'
+  root :to => redirect('/index.html')
 end

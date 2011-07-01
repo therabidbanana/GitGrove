@@ -24,3 +24,11 @@ Feature: Site Editor
       """
     And I visit the "cf" preview site
     Then I should see "this is my new"
+
+  Scenario: I edit a page title
+    Given I am on the edit "cf" dashboard
+    When I click on "index"
+    And I set the title to "foobar"
+    And I click on "Save"
+    And I visit the "cf" preview site
+    Then I should see "foobar"

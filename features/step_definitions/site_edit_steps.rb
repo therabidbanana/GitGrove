@@ -20,3 +20,7 @@ Then /^I should see a list of site files:$/ do |table|
 end
 
 
+When /^I set the title to "([^"]*)"$/ do |arg1|
+  fill_in("page_title", :with => arg1)
+end
+

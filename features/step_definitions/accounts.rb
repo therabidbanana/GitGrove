@@ -99,7 +99,13 @@ end
 
 Given /^user with token "([^"]*)" exists$/ do |arg1|
   u = User.create(:name => 'Test', :email => 'test@example.com')
-  User.first.services.first.uid = arg1
-  u.save
+  s = Service.find_by_user_id_and_provider(u.id, 'token')
+  s.uid = arg1
+  s.save
+  OmniAuth.config.add_mock :token, {
+    'uid' => arg1,
+    'user_info' => {'email' => u.email, 'name' => u.email}
+    # etc.
+  }
 end
 
