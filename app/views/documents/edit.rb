@@ -16,7 +16,7 @@ class Documents::Edit < Mustache::Rails
   end
 
   def page_name
-    @page.name.gsub('-', ' ')
+    @page.title || @page.name.gsub('-', ' ')
   end
 
   def footer
