@@ -6,15 +6,10 @@
 {{{edit_document_form_tag}}}
 {{/is_edit_page}}
   <fieldset id="gollum-editor-fields">
-  {{#is_create_page}}
   <div id="gollum-editor-title-field" class="singleline">
     <label for="page" class="jaws">Page Title</label>
-    <input type="text" name="page" id="gollum-editor-page-title" value="{{page_name}}">
+    <input type="text" name="page_title" id="gollum-editor-page-title" value="{{page_name}}">
   </div>
-  {{/is_create_page}}
-  {{#is_edit_page}}
-  <input type="hidden" name="page" id="gollum-editor-page-title" value="{{page_name}}">
-  {{/is_edit_page}}
 
   <div id="gollum-editor-function-bar">
     <div id="gollum-editor-function-buttons">
@@ -52,14 +47,8 @@
     </div>
       
     <div id="gollum-editor-format-selector"> 
-      <select id="wiki_format" name="format">
-      {{#formats}}
-        <option {{#selected}}selected="selected" {{/selected}}value="{{id}}">
-          {{name}}
-        </option>
-      {{/formats}}
-     </select>
-      <label for="format">Edit Mode</label>
+      <input type="hidden" id="wiki_format" name="format" value="markdown">
+      
     </div>
   </div>
   <div id="gollum-editor-help" class="jaws">
@@ -103,15 +92,12 @@
     </div>
     {{/sidebar}}
     
-    <div id="gollum-editor-edit-summary" class="singleline">
-      <label for="message" class="jaws">Edit message:</label>
-      <input type="text" name="message" id="gollum-editor-message-field" value="Write a small message here explaining this change. (Optional)">
-    </div>
     
     
     <span class="jaws"><br></span>
     <input type="submit" id="gollum-editor-submit" value="Save" title="Save current changes">
     <a href="javascript:void(0)" id="gollum-editor-preview" class="minibutton" title="Preview this Page">Preview</a>
+    <br />
   </fieldset>
 </form>
 </div>
