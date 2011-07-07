@@ -29,7 +29,7 @@ class ServicesController < ApplicationController
     if params[:commit] == "Cancel" || User.all.count > 0
       session[:authhash] = nil
       session.delete :authhash
-      redirect_to root_url
+      redirect_to homepage_url
     else  # create account
       @newuser = User.new
       @newuser.name = params[:name] || session[:authhash][:name]
@@ -47,7 +47,7 @@ class ServicesController < ApplicationController
         redirect_to dashboard_url
       else
         flash[:error] = 'This is embarrassing! There was an error while creating your account from which we were not able to recover.'
-        redirect_to root_url
+        redirect_to homepage_url
       end  
     end
   end  
@@ -62,7 +62,7 @@ class ServicesController < ApplicationController
       session.delete :service_id
       flash[:notice] = 'You have been signed out!'
     end  
-    redirect_to root_url
+    redirect_to homepage_url
   end
   
   # callback: success
@@ -137,7 +137,7 @@ class ServicesController < ApplicationController
             # this is a new user; show signup; @authhash is available to the view and stored in the sesssion for creation of a new user
             if(User.all.count > 0)
               flash[:notice] = 'You do not appear to have an account.'
-              redirect_to root_url
+              redirect_to homepage_url
             else
               session[:authhash] = @authhash
               render signup_services_path
@@ -157,7 +157,7 @@ class ServicesController < ApplicationController
   # callback: failure
   def failure
     flash[:error] = 'There was an error at the remote authentication service. You have not been signed in.'
-    redirect_to root_url
+    redirect_to homepage_url
   end
 end
 
