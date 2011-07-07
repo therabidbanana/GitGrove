@@ -84,7 +84,7 @@ Gitgrove::Application.routes.draw do
       get 'failure'
     end
   end
+  match '/index.html' => 'pages#index', :as => :homepage
   match ':page', :controller => 'pages', :action => 'show', :page => PagesController::PAGES
-  
   root :to => redirect('/index.html')
 end
