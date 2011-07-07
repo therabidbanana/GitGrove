@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
 
     when /the home\s?page/
-      '/'
+      '/index.html'
 
     when /the dashboard/
       '/sites/dashboard'
