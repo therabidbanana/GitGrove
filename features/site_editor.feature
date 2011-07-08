@@ -7,6 +7,7 @@ Feature: Site Editor
     And I have created the following sites:
       | name   |  url      |
       | CF     | cf        |
+    And jobs are dispatched
   
   Scenario: I open a site to edit
     Given I am on the dashboard
@@ -22,13 +23,12 @@ Feature: Site Editor
       """
         this is my new content
       """
-    And I visit the "cf" preview site
-    Then I should see "this is my new"
+    Then eventually the preview site for "cf" should include "this is my new"
 
   Scenario: I edit a page title
     Given I am on the edit "cf" dashboard
     When I click on "index"
     And I set the title to "foobar"
-    And I click on "Save"
-    And I visit the "cf" preview site
-    Then I should see "foobar"
+    And I press "Save"
+    Then eventually the preview site for "cf" should include "foobar"
+

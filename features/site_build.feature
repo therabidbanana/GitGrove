@@ -6,13 +6,13 @@ Feature: Site Builder
   Background:
     Given I have a cleaned out sites directory
     
-
   Scenario: I push changes to a site
     Given I have a working site template
     And I am logged in as an admin user
     And I have created the following sites:
       | name   |  url      |
       | CF     | cf        |
+    And jobs are dispatched
     And I have a working clone of "cf"
     When I edit the index of "cf" to have markdown body
       """
@@ -20,8 +20,7 @@ Feature: Site Builder
       ------
       """
     And I commit and push changes to "cf"
-    And I visit the preview site for "cf"
-    Then the page should include "Foobar" as a header
+    Then eventually the preview site for "cf" should include "Foobar" as a header
 
   Scenario: I try to rebuild site without token
     Given I have a working site template

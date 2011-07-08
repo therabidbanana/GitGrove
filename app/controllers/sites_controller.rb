@@ -34,7 +34,7 @@ class SitesController < ApplicationController
       redirect_to(dashboard_path) and return
     end
     @site.start_build!
-    render :text => "Rebuild successful!\n"
+    render :text => "Rebuild queued.\n"
   end
 
 

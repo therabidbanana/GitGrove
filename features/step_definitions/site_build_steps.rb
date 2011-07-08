@@ -1,3 +1,27 @@
+Given /^jobs are dispatched$/ do
+  success, failures = Delayed::Worker.new.work_off
+  success.should > 0
+end
+
+Then /^eventually the preview site for "(.*)" should include "(.*)"$/ do |site, text|
+  When("I visit the preview site for \"#{site}\"")
+  Then("I should see \"Site rebuilding\"")
+  Given("jobs are dispatched")
+  When("I visit the preview site for \"#{site}\"")
+  Then("I should see \"#{text}\"")
+  Then("I should not see \"Site rebuilding\"")
+end
+
+Then /^eventually the preview site for "(.*)" should include "(.*)" as a header$/ do |site, text|
+  When("I visit the preview site for \"#{site}\"")
+  Then("I should see \"Site rebuilding\"")
+  Given("jobs are dispatched")
+  When("I visit the preview site for \"#{site}\"")
+  Then("the page should include \"#{text}\" as a header")
+  Then("I should not see \"Site rebuilding\"")
+end
+
+
 Given /^I have a cleaned out sites? directory$/ do
   clean_out_sites_dir
 end
@@ -34,6 +58,6 @@ When /^I visit the preview site for "([^"]*)"$/ do |arg1|
 end
 
 Then /^the page should include "([^"]*)" as a header$/ do |arg1|
-  page.should have_css('h1,h2', :content => arg1)
+  page.should have_css('h1,h2', :text => arg1)
 end
 

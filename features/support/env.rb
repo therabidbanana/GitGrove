@@ -32,8 +32,17 @@ ActionController::Base.allow_rescue = false
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :truncation #:transaction
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
+
+# Run delayed job
+# system "rake environment RAILS_ENV=test jobs:work &"
+# puts "rake environment RAILS_ENV=test jobs:work &"
+# sleep 3
+# at_exit do
+  # system "ps -ef | grep ' jobs:work' | grep -v grep | awk '{print $2}' | xargs kill -9"
+  # puts "ps -ef | grep ' jobs:work' | grep -v grep | awk '{print $2}' | xargs kill -9"
+# end
 

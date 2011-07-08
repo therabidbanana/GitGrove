@@ -8,7 +8,7 @@ class Site < ActiveRecord::Base
 
   state_machine :initial => :unbuilt do
     after_transition any => :queued do |site, trans| 
-      Delayed::Job.enqueue(SiteBuildJob.new(site))
+      Delayed::Job.enqueue(SiteBuildJob.new(site.id))
     end
 
     event :queue_build do
@@ -67,29 +67,3 @@ class Site < ActiveRecord::Base
     self.queue_build if self.can_queue_build?
   end
 end
-
-class SiteBuildJob < Struct.new(:site)
-  def perform
-    Dir.chdir(site.preview_path) do
-      system "git pull"
-      system "nanoc3 co"
-    end
-  end
-
-  def before(job)
-    site.dequeue
-  end
-
-  def success(job)
-    site.finish
-  end
-
-  def error(job, exception)
-    site.exception
-  end
-
-  def failure
-    site.exception
-  end
-end
-

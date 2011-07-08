@@ -6,6 +6,7 @@ Feature: Site Preview
     And I have created the following sites:
       | name   |  url      |
       | CF     | cf        |
+    And jobs are dispatched
   
   Scenario: I go to preview
     When I visit the preview site for "cf"
