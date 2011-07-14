@@ -4,18 +4,22 @@ class DocumentsController < ApplicationController
   before_filter :authenticate_user!
   def index
     @site = Site.find_by_id(params[:site_id])
-    @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
+    @repo = Stinker::Site.new(@site.repo_path)
   end
   def edit
     @site = Site.find_by_id(params[:site_id])
-    @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
+    @repo = Stinker::Site.new(@site.repo_path)
     
     @page = @repo.page(params[:id])
-    @meta = @page.meta_data
+    if @page
+      @meta = @page.meta_data
+    else
+      redirect_to site_documents_path(@site)
+    end
   end
   def update
     @site = Site.find_by_id(params[:site_id])
-    @repo = Stinker::Site.new(@site.repo_path, :page_file_dir => 'content')
+    @repo = Stinker::Site.new(@site.repo_path)
     @page = @repo.page(params[:id])
     @meta = {'title' => params[:page_title]}
     @repo.update_page_with_meta(@page, @page.name, @page.format, params[:content], @meta, commit_for(@page))

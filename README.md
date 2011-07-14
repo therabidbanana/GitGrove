@@ -8,6 +8,7 @@ code added to a lib dir, this may not be safe for environments where you don't t
 the people with Git access. The frontend interface only allows changes to content
 items.
 
+
 ## Additional Setup
 
 Sites are stored as repos, so you will need access to those repos. You can set up

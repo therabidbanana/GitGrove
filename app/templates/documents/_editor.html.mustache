@@ -9,8 +9,26 @@
   <div id="gollum-editor-title-field" class="singleline">
     <label for="page" class="jaws">Page Title</label>
     <input type="text" name="page_title" id="gollum-editor-page-title" value="{{page_name}}">
+    
   </div>
 
+  {{#has_meta_fields}}
+  <div id="gollum-editor-meta-section" class="collapsed">
+    <a href="#" class="button"><span>Expand/Collapse</span></a>
+    <h4>Extras</h4>
+    <div class="fields">
+    {{#meta_fields}}
+      <div id="gollum-editor-field" class="singleline field">
+        <label for="gollum-editor-{{field_name}}">{{field_name}}</label>
+        <input type="text" name="{{field_name}}" id="gollum-editor-{{field_name}}" value="{{field_value}}">
+        
+      </div>
+    {{/meta_fields}}
+    </div>
+    
+  </div>
+  {{/has_meta_fields}}
+  {{inspection}}
   <div id="gollum-editor-function-bar">
     <div id="gollum-editor-function-buttons">
     <a href="#" id="function-bold" class="function-button">
@@ -76,13 +94,11 @@
     <textarea id="gollum-editor-body"
      data-markup-lang="{{format}}" name="content">{{content}}</textarea>
      
-    {{#footer}}
     <div id="gollum-editor-edit-footer" class="collapsed">
       <a href="#" class="button"><span>Expand/Collapse</span></a>
       <h4>Footer</h4>
       <textarea id="gollum-editor-footer" name="footer">{{footer}}</textarea>
     </div>
-    {{/footer}}
     
     {{#sidebar}}
     <div id="gollum-editor-edit-sidebar" class="collapsed">

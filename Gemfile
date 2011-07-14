@@ -6,14 +6,16 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem "nokogiri", "1.4.6"
 
 gem 'sass'
 gem 'haml'
 gem 'grit'
-gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git'
+gem 'nanoc', :git => 'git://github.com/ddfreyne/nanoc.git'
 gem 'unicorn'
 gem 'jquery-rails'
-gem 'omniauth'
+gem "omniauth", "~> 0.2.6"
+
 gem 'ar_openid_store'
 gem 'yettings'
 gem 'stinker', :git => 'git://github.com/therabidbanana/stinker.git'
@@ -51,8 +53,8 @@ group :test do
   gem "cucumber"
   # gem 'akephalos' #, :git => 'git://github.com/thoughtbot/akephalos.git'
   gem "capybara-webkit", "~> 0.5.0"
-  gem "cucumber-rails"
-  gem "capybara", ">= 0.4.0"
+  gem "cucumber-rails", "~> 0.4.1"
+  gem "capybara", "~> 0.4.0"
   gem "launchy"
 end
 
