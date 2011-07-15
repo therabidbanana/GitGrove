@@ -56,4 +56,9 @@ Then /^I should not see a "([^"]*)" link$/ do |arg1|
   assert !has_content?(arg1)
 end
 
+Then /^I should be at (.*)$/ do |arg1|
+  current_url.should eql(url_to(arg1))
+end
+
+
 

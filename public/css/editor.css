@@ -298,14 +298,13 @@ a#function-help:hover span { background-position: -405px -28px; }
 
 #gollum-editor .collapsed,
 #gollum-editor .expanded {
-  border-bottom: 1px solid #ddd;
   display: block;
   overflow: hidden;
   padding: 1em 0 0.5em;
 }
 
-#gollum-editor #gollum-editor-body + .collapsed,
-#gollum-editor #gollum-editor-body + .expanded {
+#gollum-editor  .collapsed,
+#gollum-editor  .expanded {
   border-top: 1px solid #ddd;
   margin-top: 0.7em;
 }
@@ -376,11 +375,14 @@ a#function-help:hover span { background-position: -405px -28px; }
   background-position: -378px -28px;
 }
 
-#gollum-editor .collapsed textarea {
+#gollum-editor .collapsed textarea,
+#gollum-editor .collapsed .fields{
   display: none;
+  margin: 5px 0;
 }
 
-#gollum-editor .expanded textarea {
+#gollum-editor .expanded textarea,
+#gollum-editor .expanded .fields{
   border: 1px solid #ddd;
   clear: both;
   display: block;

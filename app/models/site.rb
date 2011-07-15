@@ -41,17 +41,19 @@ class Site < ActiveRecord::Base
     end
 
 
-    if(!File.exists?(preview_path))
-      FileUtils.mkdir(Yetting.preview_storage_path) if(!File.exists?(Yetting.preview_storage_path))
-      git = Grit::Git.new(Yetting.preview_storage_path)
-      git.clone({}, self.repo_path, preview_path)
-    end
+    preview_repo_setup
 
     self.save
     start_build!
   end
 
-    
+  def preview_repo_setup
+    if(!File.exists?(preview_path))
+      FileUtils.mkdir(Yetting.preview_storage_path) if(!File.exists?(Yetting.preview_storage_path))
+      git = Grit::Git.new(Yetting.preview_storage_path)
+      git.clone({}, self.repo_path, preview_path)
+    end
+  end
   
  
   

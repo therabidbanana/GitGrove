@@ -1,4 +1,5 @@
 Given /^jobs are dispatched$/ do
+  puts "Running delayed job for a bit..."
   success, failures = Delayed::Worker.new.work_off
   success.should > 0
 end

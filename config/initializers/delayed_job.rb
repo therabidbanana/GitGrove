@@ -8,9 +8,10 @@ Delayed::Worker.max_run_time = 5.minutes
 class SiteBuildJob < Struct.new(:site_id)
   def perform
     site = Site.find_by_id(site_id)
+    site.preview_repo_setup
     Dir.chdir(site.preview_path) do
       system "git pull &> /dev/null"
-      puts "   (Rebuilding with nanoc)"
+      puts "   (Rebuilding #{site.preview_path} with nanoc)"
       system "nanoc3 co &> /dev/null"
     end if site
   end

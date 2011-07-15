@@ -16,6 +16,12 @@ Feature: Site Editor
       | filename |
       | index.md |
 
+  Scenario: I  can preview a page
+    Given I am on the edit "cf" dashboard
+    When I click on "index"
+    And I click on "View Page"
+    Then I should be at the preview site for "cf"
+
   Scenario: I edit a page
     Given I am on the edit "cf" dashboard
     When I click on "index"
@@ -32,3 +38,9 @@ Feature: Site Editor
     And I press "Save"
     Then eventually the preview site for "cf" should include "foobar"
 
+  Scenario: I have a custom field
+    Given I am on the edit "cf" dashboard
+    When I click on "index"
+    And I set the subtitle to "foobar"
+    And I press "Save"
+    Then eventually the preview site for "cf" should include "foobar"

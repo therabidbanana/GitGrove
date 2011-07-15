@@ -30,6 +30,26 @@ class Documents::Edit < Mustache::Rails
     @footer
   end
 
+  
+
+
+  def meta_fields
+    type = @page.meta_data["content_type"] || "page"
+    fields = @repo.content_types[type] || {}
+    fields.collect do |field, value|
+      
+      {"field_name" => field, "human_field_name" => field.humanize, 
+        "field_type" => value, "field_value" => @page.meta_data[field] || ""}
+    end
+  end
+
+  def has_meta_fields
+    meta_fields.size > 0
+  end
+  def preview_url
+    with_subdomain(@site.url)
+  end
+
   def escaped_name
     @page.name
   end

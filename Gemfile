@@ -11,7 +11,7 @@ gem "nokogiri", "1.4.6"
 gem 'sass'
 gem 'haml'
 gem 'grit'
-gem 'nanoc', :git => 'git://github.com/ddfreyne/nanoc.git'
+gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git', :tag => '3.2.0b1'
 gem 'unicorn'
 gem 'jquery-rails'
 gem "omniauth", "~> 0.2.6"
@@ -21,6 +21,7 @@ gem 'yettings'
 gem 'stinker', :git => 'git://github.com/therabidbanana/stinker.git'
 gem 'mustache'
 gem 'mustache_rails3'
+
 
 gem 'kramdown'
 gem 'deadweight'
@@ -35,6 +36,7 @@ gem 'coffee-script'
 gem 'sass'
 gem 'delayed_job'
 gem 'state_machine'
+gem 'systemu'
 
 
 group :development do
