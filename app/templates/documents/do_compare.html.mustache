@@ -1,12 +1,14 @@
 <div id="wiki-wrapper" class="compare">
 <div id="head">
-  <h1>History for <strong>{{path}}</strong></h1>
+  <h1>History for <strong>{{page_title}}</strong></h1>
   
   <ul class="actions">
-    <li class="minibutton"><a href="/history/{{escaped_name}}"
+  <li class="minibutton"><a href="{{pages_list_path}}"
+       class="action-view-page">Page List</a></li>
+    
+    <li class="minibutton"><a href="{{history_document_path}}"
        class="action-page-history">Back to Page History</a></li>
   </ul>
-  {{>searchbar}}
 </div>
 
 {{#message}}
@@ -18,7 +20,7 @@
   {{#show_revert}}
   <ul class="actions">
     <li class="minibutton">
-      <form name="gollum-revert" action="/revert/{{escaped_name}}/{{before}}/{{after}}" method="post" id="gollum-revert-form">
+      {{{revert_document_form_tag}}}
       <a href="#" class="gollum-revert-button">Revert Changes</a>
       </form>
     </li>

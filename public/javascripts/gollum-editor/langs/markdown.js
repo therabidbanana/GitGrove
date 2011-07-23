@@ -109,7 +109,8 @@ var MarkDown = {
                                     {
                                       id: 'url',
                                       name: 'Image URL',
-                                      type: 'text'
+                                      type: 'copy',
+                                      copy: '#image_dropdown'
                                     },
                                     {
                                       id: 'alt',

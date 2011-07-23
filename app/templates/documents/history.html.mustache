@@ -2,12 +2,13 @@
 <div id="head">
   <h1>History for <strong>{{title}}</strong></h1>
   <ul class="actions">
-    <li class="minibutton"><a href="/{{escaped_name}}"
+  <li class="minibutton"><a href="{{pages_list_path}}"
+       class="action-view-page">Page List</a></li>
+    <li class="minibutton"><a href="http://{{preview_url}}/{{escaped_name}}.html"
        class="action-view-page">View Page</a></li>
-    <li class="minibutton"><a href="/edit/{{escaped_name}}"
+    <li class="minibutton"><a href="{{edit_document_path}}"
        class="action-edit-page">Edit Page</a></li>
   </ul>
-  {{>searchbar}}
 </div>
 <div id="wiki-history">
   
@@ -16,8 +17,7 @@
        class="action-compare-revision">Compare Revisions</a></li>
   </ul>
 
-  <form name="compare-versions" id="version-form" method="post"
-   action="/compare/{{escaped_name}}">
+  {{{compare_document_form_tag}}}
   <fieldset>
   <table>
     <tbody>
@@ -37,7 +37,7 @@
         <td class="commit-name">
           <span class="time-elapsed">{{date}}:</span>&nbsp;
           {{message}}
-          [<a href="/{{escaped_name}}/{{id}}" title="View commit">{{id7}}</a>]
+          
         </td>
       </tr>
       {{/versions}}

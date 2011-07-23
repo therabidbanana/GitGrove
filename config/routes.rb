@@ -3,11 +3,25 @@ Gitgrove::Application.routes.draw do
   resources :sites do
     collection do
       get 'dashboard'
+      get 'index' => redirect('/sites/dashboard')
     end
     member do
       get 'rebuild'
     end
-    resources :documents, :constraints => {:id => /.+/}
+    resources :documents, :constraints => {:id => /.+/} do
+      member do
+        get 'history'
+        post 'revert'
+        post 'compare'
+        match 'do_compare/*versions' => 'documents#do_compare'
+      end
+    end
+    
+    resources :assets, :constraints => {:id => /.+/} do
+      member do
+
+      end
+    end
   end
   resources :users
 

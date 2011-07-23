@@ -44,3 +44,4 @@ Feature: Site Editor
     And I set the subtitle to "foobar"
     And I press "Save"
     Then eventually the preview site for "cf" should include "foobar"
+

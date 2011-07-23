@@ -1,5 +1,12 @@
 - @repo.pages.each do |page|
-
-  .file
-    %h1= link_to(page.title, edit_site_document_path(@site, page.name))
-    %h2 (#{page.path.gsub(/^content\//, '')})
+  .file_row{:id => page.fullname.gsub("/", '-')}
+    .actions
+      .minibutton= link_to 'View', "http://#{with_subdomain(@site.url)}/#{page.fullname}.html"
+      .minibutton= link_to 'Delete', site_document_path(@site, page.fullname), :method => :delete, :confirm => "Are you sure?"
+    .file
+      %h1= link_to(page.title, edit_site_document_path(@site, page.fullname))
+      %h2 (#{page.path.gsub(/^content\//, '')})
+%footer
+  %ul.actions
+    %li.minibutton= link_to 'Create a New Page', new_site_document_path(@site)
+    %li.minibutton= link_to 'View Assets', site_assets_path(@site)

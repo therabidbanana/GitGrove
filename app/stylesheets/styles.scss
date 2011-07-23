@@ -1,8 +1,15 @@
 @import 'reset';
 
+@mixin clearfix{
+  &:after {
+      content: "";
+      display: table;
+      clear: both; }
+  zoom:1;
+}
+
 body{
-  width: 95%;
-  margin: 1em auto;
+  background: #999;
   @extend .afs-gentium-basic;
 }
 
@@ -12,11 +19,48 @@ pre, code{
 
 
 #main{
+  width: 95%;
+  margin: 1em auto;
+  padding: 1em;
+  background: #fff;
+  border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+
+  #site_list{
+    .site{
+      padding: 0.4em;
+      .actions{ float: right;}
+      @include clearfix;
+    }
+  }
+  .file_row{
+    padding: 0.4em;
+    .actions{ float: right;}
+    @include clearfix;
+  }
+  .actions{ float: left; 
+      .minibutton{ float: left; }
+    }
+  @include clearfix;
+
 }
 
 
 #header{
-  text-align: center;
+  text-align: right;
+
+  padding: 0.3em;
+  background: #222;
+  color: white;
+  
+  h1{
+    float: left;
+    margin: 0.4em;
+  }
+
+  a{ float: right; color: white; margin: 0.4em; }
+  @include clearfix;
 }
 
 section.services{

@@ -1,12 +1,40 @@
-class Documents::Compare < Mustache::Rails
+class Documents::DoCompare < Mustache::Rails
   attr_reader :page, :diff, :versions, :message
 
   def title
     "Comparison of #{@page.title}"
   end
 
+  def page_title
+    @page.title
+  end
+
+  def escaped_name
+    @page.fullname
+  end
+
+  def history_document_path
+    history_site_document_path(@site, @page.fullname)
+  end
+
+  def revert_document_path
+    revert_site_document_path(@site, @page.fullname)
+  end
+
+  def revert_document_form_tag
+    %|
+      #{form_tag(revert_document_path, :method => :post, :id => 'gollum-revert-form', :name => 'gollum-revert')}
+      <input type="hidden" name="before" value="#{before}" />
+      <input type="hidden" name="after" value="#{after}" />
+    |
+  end
+
   def path
     @page.path
+  end
+
+  def pages_list_path
+    site_documents_path(@site)
   end
 
   def before

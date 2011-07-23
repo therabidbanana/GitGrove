@@ -31,6 +31,9 @@
               fieldMarkup += Dialog.createFieldText( fieldArray[i] );
               break;
               
+            case 'copy':
+              fieldMarkup += Dialog.createFieldCopy( fieldArray[i] );
+              break;
              default:
               break;
            
@@ -67,6 +70,31 @@
      
        return html;
      },
+
+     createFieldCopy: function( fieldAttributes ) {
+       var html = '';
+     
+       if ( fieldAttributes.name ) {
+         html += '<label';
+         if ( fieldAttributes.id ) {
+           html += ' for="' + fieldAttributes.name + '"';
+         }
+         html += '>' + fieldAttributes.name + '</label>';
+       }
+     
+     
+       if ( fieldAttributes.id ) {
+         var clone = jQuery(fieldAttributes.copy).clone();
+         area = clone.children('input, select, textarea');
+         area.attr('name', fieldAttributes.id);
+         area.attr('id', 'gollum-dialog-dialog-generated-field-' +
+                 fieldAttributes.id +'');
+         console.log(area);
+         html += clone.html();
+       }
+     
+       return html;
+     },
    
      createMarkup: function( title, body ) {
        Dialog.markupCreated = true;
@@ -98,7 +126,7 @@
      
        var results = [];
        // get the results from each field and build them into the object
-       $('#gollum-dialog-dialog-body input').each(function() {
+       $('#gollum-dialog-dialog-body input, #gollum-dialog-dialog-body select').each(function() {
          results[$(this).attr('name')] = $(this).val();
        });
      

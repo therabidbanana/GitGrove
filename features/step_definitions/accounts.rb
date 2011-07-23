@@ -40,11 +40,11 @@ When /^I sign in with Google account "([^"]*)"$/ do |arg1|
   visit '/auth/google'
 end
 
-When /^I follow the sign in link$/ do
+When /^I follow the sign\s?in link$/ do
   click_link("Log in")
 end
 
-When /^I follow the sign out link$/ do
+When /^I follow the sign\s?out link$/ do
   click_link("Log out")
 end
 

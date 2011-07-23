@@ -20,19 +20,48 @@ class Documents::History < Mustache::Rails
     end
   end
 
+  def history_document_path
+    history_site_document_path(@site, @page.fullname)
+  end
+
+  def preview_url
+    with_subdomain(@site.url)
+  end
+
+  def edit_document_path
+    edit_site_document_path(@site, page.fullname)
+  end
+
+  def compare_document_path
+    compare_site_document_path(@site, page.fullname)
+  end
+
+  def compare_document_form_tag
+    form_tag(compare_document_path, :method => :post, :name => 'compare-versions', :id => 'version-form')
+  end
+
+  def escaped_name
+    @page.fullname
+  end
+
+  def pages_list_path
+    site_documents_path(@site)
+  end
+
+
   def previous_link
     label = "&laquo; Previous"
     if @page_num == 1
       %(<span class="disabled">#{label}</span>)
     else
-      %(<a href="/history/#{@page.name}?page=#{@page_num-1}" hotkey="h">#{label}</a>)
+      %(<a href="#{history_document_path}?page=#{@page_num-1}" hotkey="h">#{label}</a>)
     end
   end
 
   def next_link
     label = "Next &raquo;"
-    if @versions.size == Gollum::Page.per_page
-      %(<a href="/history/#{@page.name}?page=#{@page_num+1}" hotkey="l">#{label}</a>)
+    if @versions.size == Stinker::Page.per_page
+      %(<a href="#{history_document_path}?page=#{@page_num+1}" hotkey="l">#{label}</a>)
     else
       %(<span class="disabled">#{label}</span>)
     end

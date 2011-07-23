@@ -1,6 +1,14 @@
 <div id="gollum-editor" data-escaped-name="{{escaped_name}}" class="{{#is_create_page}}create{{/is_create_page}}{{#is_edit_page}}edit{{/is_edit_page}}">
+<div style="display:none; " id="image_dropdown">
+  <select>
+    {{#image_list}}
+      <option value="{{path}}">{{name}}</option>
+    {{/image_list}}
+
+  </select>
+</div>
 {{#is_create_page}}
-<form name="gollum-editor" action="/create" method="post">
+{{{create_document_form_tag}}}
 {{/is_create_page}}
 {{#is_edit_page}}
 {{{edit_document_form_tag}}}
@@ -11,23 +19,75 @@
     <input type="text" name="page_title" id="gollum-editor-page-title" value="{{page_name}}">
     
   </div>
-
-  {{#has_meta_fields}}
+  
   <div id="gollum-editor-meta-section" class="collapsed">
     <a href="#" class="button"><span>Expand/Collapse</span></a>
     <h4>Extras</h4>
     <div class="fields">
-    {{#meta_fields}}
-      <div id="gollum-editor-field" class="singleline field">
-        <label for="gollum-editor-{{field_name}}">{{field_name}}</label>
-        <input type="text" name="{{field_name}}" id="gollum-editor-{{field_name}}" value="{{field_value}}">
-        
-      </div>
-    {{/meta_fields}}
+      {{#meta_fields}}
+        {{#is_text}}
+          <div id="gollum-extras-{{field_name}}" class="singleline field">
+            <label for="extras-{{field_name}}">{{human_field_name}}</label>
+            <input type="text" name="extras[{{field_name}}]" id="extras-{{field_name}}" value="{{field_value}}">
+          </div>
+        {{/is_text}}
+        {{#is_fulltext}}
+          <div id="gollum-extras-{{field_name}}" class="textarea">
+            <label for="extras-{{field_name}}">{{human_field_name}}</label>
+            <textarea id="extras-{{field_name}}" name="extras[{{field_name}}]">{{field_value}}</textarea>
+          </div>
+        {{/is_fulltext}}
+        {{#is_asset}}
+          <div id="gollum-extras-{{field_name}}" class="dropdown">
+            <label for="extras-{{field_name}}">{{human_field_name}}</label>
+            
+            <br />
+            <select id="extras-{{field_name}}" name="extras[{{field_name}}]">
+              <option value=""></option>
+              {{#field_assets_list}}
+                <option value="{{path}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+              {{/field_assets_list}}
+            </select>
+          </div>
+        {{/is_asset}}
+        {{#is_image}}
+          <div id="gollum-extras-{{field_name}}" class="dropdown">
+            <label for="extras-{{field_name}}">{{human_field_name}}</label>
+            <br />
+            <select id="extras-{{field_name}}" name="extras[{{field_name}}]">
+              <option value=""></option>
+              {{#field_image_list}}
+                <option value="{{path}}" {{#selected}}selected{{/selected}}>{{name}}</option>
+              {{/field_image_list}}
+            </select>
+          </div>
+        {{/is_image}}
+
+
+      {{/meta_fields}}
+      
+        <div id="gollum-extras-page-name" class="singleline field">
+            <label for="extras-page-name">Filename</label>
+            <input type="text" name="page_name" id="extras-page-name" value="{{name}}">
+          </div>
+{{#is_create_page}}
+          
+        <div id="gollum-extras-content-type" class="singleline field">
+            <label for="extras-content-type">Content Type</label>
+
+            <select name="extras[content_type]" id="extras-content-type">
+            {{#content_types}}
+              <option value="{{val}}">{{human}}</option>
+              {{/content_types}}
+            </select>
+          </div> 
+    {{/is_create_page}}
+{{#is_edit_page}}
+    <input type="hidden" name="extras[content_type]" value="{{content_type}}" />
+    {{/is_edit_page}}
     </div>
     
   </div>
-  {{/has_meta_fields}}
   {{inspection}}
   <div id="gollum-editor-function-bar">
     <div id="gollum-editor-function-buttons">
@@ -93,26 +153,10 @@
   </div>
     <textarea id="gollum-editor-body"
      data-markup-lang="{{format}}" name="content">{{content}}</textarea>
-     
-    <div id="gollum-editor-edit-footer" class="collapsed">
-      <a href="#" class="button"><span>Expand/Collapse</span></a>
-      <h4>Footer</h4>
-      <textarea id="gollum-editor-footer" name="footer">{{footer}}</textarea>
-    </div>
-    
-    {{#sidebar}}
-    <div id="gollum-editor-edit-sidebar" class="collapsed">
-      <a href="#" class="button"><span>Expand/Collapse</span></a>
-      <h4>Sidebar</h4>
-      <textarea id="gollum-editor-sidebar" name="sidebar">{{sidebar}}</textarea>
-    </div>
-    {{/sidebar}}
-    
     
     
     <span class="jaws"><br></span>
     <input type="submit" id="gollum-editor-submit" value="Save" title="Save current changes">
-    <a href="javascript:void(0)" id="gollum-editor-preview" class="minibutton" title="Preview this Page">Preview</a>
     <br />
   </fieldset>
 </form>

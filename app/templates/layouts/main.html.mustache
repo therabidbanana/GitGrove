@@ -1,8 +1,16 @@
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
 <head>
-  <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+  <title>{{title}}</title>
+  {{{stylesheets}}}
   {{{csrf_meta_tag}}}
+  <script src="/javascripts/libs/modernizr.js"></script>
+  <script src="/javascripts/libs/respond.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/gollum.css" media="all">
   <link rel="stylesheet" type="text/css" href="/css/editor.css" media="all">
   <link rel="stylesheet" type="text/css" href="/css/dialog.css" media="all">
@@ -19,11 +27,29 @@
   
   <script type="text/javascript" 
     src="/javascripts/gollum-editor/gollum.editor.js"></script>
-  <title>{{title}}</title>
+  
 </head>
-<body>
+<body id="{{location}}">
+  <div id="container">
+    <header id="header">
 
-{{{yield}}}
+      <h1>{{title}}</h1>
+      {{#is_admin}}
+        <a href="{{users_path}}">Manage Users</a>
+      {{/is_admin}}
+      {{#current_user}}
+        <a href="{{signout_path}}">Log out</a>
+        <a href="{{dashboard_path}}">Sites</a>
+      {{/current_user}}
+    </header>
+    <div id="main" role="main">
+      {{{yield}}}
+    </div>
+    <footer id="footer">
 
+    </footer>
+  </div> <!--! end of #container -->
+
+    {{{js_rails}}}
 </body>
 </html>

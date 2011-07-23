@@ -1,0 +1,11 @@
+- @repo.assets.each do |file|
+  .file_row{:id => file.name.gsub("/", '-')}
+    .actions
+      .minibutton= link_to 'Delete', site_asset_path(@site, file.path), :method => :delete, :confirm => "Are you sure?"
+    .file
+      %h1
+        = file.name
+%footer
+  %ul.actions
+    %li.minibutton= link_to 'Create a New Asset', new_site_asset_path(@site)
+

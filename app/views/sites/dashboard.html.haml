@@ -4,12 +4,16 @@
   #site_list
     - @sites.each do |s|
       .site
+        .actions
+          - if(current_user.admin?)
+            .minibutton= link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
+          .minibutton= link_to 'Edit', site_documents_path(s) 
+          .minibutton
+            %a{:href => "http://#{with_subdomain(s.url)}/index.html"} Preview
         %p= s.name
         - if(current_user.admin?)
           %p= s.repo_path
-          = link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
-        = link_to 'Edit', site_documents_path(s) 
-        %a{:href => "http://#{with_subdomain(s.url)}/index.html"} Preview
   - if current_user.admin?
-    = link_to 'Create New Site', new_site_path
+    .actions
+      .minibutton= link_to 'Create New Site', new_site_path
 

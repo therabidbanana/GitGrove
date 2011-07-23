@@ -1,0 +1,7 @@
+= form_tag(new_site_asset_path(@site), :method => :put, :name => 'gollum-editor', :multipart => true) do
+  %p
+    %label File
+    %br
+    %input{:type => 'file', :name => 'file'}
+  %input(type="submit" id="gollum-editor-submit" value="Save" title="Save current changes")
+  

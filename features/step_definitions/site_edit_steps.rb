@@ -24,3 +24,7 @@ When /^I set the title to "([^"]*)"$/ do |arg1|
   fill_in("page_title", :with => arg1)
 end
 
+When /^I set the subtitle to "([^"]*)"$/ do |arg1|
+  fill_in("extras-subtitle", :with => arg1)
+end
+
