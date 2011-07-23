@@ -12,7 +12,7 @@
             %a{:href => "http://#{with_subdomain(s.url)}/index.html"} Preview
         %p= s.name
         - if(current_user.admin?)
-          %p= s.repo_path
+          %p= File.join(Yetting.repo_clone_url, File.basename(s.repo_path))
   - if current_user.admin?
     .actions
       .minibutton= link_to 'Create New Site', new_site_path

@@ -8,12 +8,17 @@ gem 'rails', '3.0.9'
 gem 'sqlite3'
 gem "nokogiri", "1.4.6"
 
+gem 'json'
 gem 'sass'
+gem 'coffee-script'
+gem 'uglifier'
+# Rails 3.1 - JavaScript
+gem 'jquery-rails'
+
 gem 'haml'
 gem 'grit'
-gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git', :tag => '3.2.0b1'
+gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git', :tag => '3.2.0b3'
 gem 'unicorn'
-gem 'jquery-rails'
 gem "omniauth", "~> 0.2.6"
 
 gem 'ar_openid_store'
@@ -33,7 +38,6 @@ gem 'rack'
 gem 'adsf'
 gem 'nanoc-cachebuster'
 gem 'coffee-script'
-gem 'sass'
 gem 'delayed_job'
 gem 'state_machine'
 gem 'systemu'

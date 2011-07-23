@@ -1,5 +1,6 @@
 defaults: &defaults
   repo_storage_path: <%= Rails.root %>/git_sites
+  repo_clone_url: "therabidbanana@gitgrove.dev:~/gitgrove"
   preview_storage_path: <%= Rails.root %>/site_preview
   oa:
     facebook: nil

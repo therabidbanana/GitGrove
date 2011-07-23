@@ -1,14 +1,14 @@
 GIT
   remote: git://github.com/ddfreyne/nanoc.git
-  revision: 52fc44f6ebe23622cc8403ac826d359fd2708819
-  tag: 3.2.0b1
+  revision: 4ed3dc039493cc073f5cab8abeb1397dbfe5445e
+  tag: 3.2.0b3
   specs:
-    nanoc3 (3.2.0b1)
+    nanoc3 (3.2.0b3)
       cri (~> 2.0)
 
 GIT
   remote: git://github.com/therabidbanana/stinker.git
-  revision: 160fab83dc5c1a0da3428099bccee0293eb5779d
+  revision: eac2ff765299370a3eaad7a0c88efc7be52918f1
   specs:
     stinker (0.0.3)
       albino (~> 1.3.2)
@@ -257,6 +257,9 @@ GEM
     typogruby (1.0.12)
       rubypants
     tzinfo (0.3.29)
+    uglifier (1.0.0)
+      execjs (>= 0.3.0)
+      multi_json (>= 1.0.2)
     unicorn (4.0.1)
       kgio (~> 2.4)
       rack
@@ -286,6 +289,7 @@ DEPENDENCIES
   haml
   jquery-rails
   jsmin
+  json
   kramdown
   launchy
   mustache
@@ -307,5 +311,6 @@ DEPENDENCIES
   systemu
   taps
   typogruby
+  uglifier
   unicorn
   yettings
