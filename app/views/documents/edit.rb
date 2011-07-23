@@ -94,6 +94,7 @@ class Documents::Edit < Mustache::Rails
   end
 
   def content_type
+    @meta ||= {}
     (@meta["content_type"].nil? || @meta["content_type"].empty?) ? "page" : @meta["content_type"] 
   end
   

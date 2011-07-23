@@ -31,6 +31,7 @@ class Site < ActiveRecord::Base
   def setup_repo
     self.rebuild_token = rand(36**8).to_s(36)
 
+    FileUtils.mkdir_p(Yetting.repo_storage_path) if(!File.exists?(Yetting.repo_storage_path))
     self.repo_path = "#{Yetting.repo_storage_path}/#{self.url}.git"
     clone = "#{Yetting.repo_storage_path}/_template_site.git"
     
@@ -49,7 +50,7 @@ class Site < ActiveRecord::Base
 
   def preview_repo_setup
     if(!File.exists?(preview_path))
-      FileUtils.mkdir(Yetting.preview_storage_path) if(!File.exists?(Yetting.preview_storage_path))
+      FileUtils.mkdir_p(Yetting.preview_storage_path) if(!File.exists?(Yetting.preview_storage_path))
       git = Grit::Git.new(Yetting.preview_storage_path)
       git.clone({}, self.repo_path, preview_path)
     end

@@ -11,7 +11,7 @@ gem "nokogiri", "1.4.6"
 gem 'sass'
 gem 'haml'
 gem 'grit'
-gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git', :tag => '3.2.0b1'
+gem 'nanoc3', :git => 'git://github.com/ddfreyne/nanoc.git', :tag => '3.2.0b3'
 gem 'unicorn'
 gem 'jquery-rails'
 gem "omniauth", "~> 0.2.6"
@@ -42,7 +42,6 @@ gem 'systemu'
 group :development do
   gem "taps"
   gem 'foreman'
-  gem "annotate-models"
 end
 
 group :test do

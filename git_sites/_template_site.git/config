@@ -3,3 +3,5 @@
 	filemode = true
 	bare = true
 	ignorecase = true
+[remote "origin"]
+	url = /Users/therabidbanana/Desktop/_template_site
