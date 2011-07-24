@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :services, :dependent => :destroy
   has_and_belongs_to_many :sites, :join_table => :users_sites
   
-  attr_accessible :name, :email
+  attr_accessible :name, :email, :is_admin
   after_create :grant_admin
 
   def grant_admin
