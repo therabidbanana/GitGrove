@@ -1,6 +1,8 @@
 defaults: &defaults
   repo_storage_path: <%= Rails.root %>/git_sites
+  repo_clone_url: "therabidbanana@localhost:~/gitgrove"
   preview_storage_path: <%= Rails.root %>/site_preview
+  archives_path: <%= Rails.root %>/public/site_archives
   oa:
     facebook: nil
   
@@ -11,8 +13,15 @@ test:
   <<: *defaults
   repo_storage_path: /tmp/gitgrovesites
   preview_storage_path: /tmp/gitgrovepreview
+  archives_path: /tmp/gitgrovesite_archives
 
 
 production:
   <<: *defaults
+  repo_storage_path: <%= Rails.root %>/git_sites
+  repo_clone_url: "git@sandbox.osb.co:~/gitgrove"
+  preview_storage_path: <%= Rails.root %>/site_preview
+  archives_path: <%= Rails.root %>/public/site_archives
+  oa:
+    facebook: nil
 
