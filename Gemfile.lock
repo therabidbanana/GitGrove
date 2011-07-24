@@ -225,7 +225,6 @@ GEM
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
     rubyntlm (0.1.1)
-    rubypants (0.2.0)
     rubyzip (0.9.4)
     sanitize (2.0.3)
       nokogiri (< 1.6, >= 1.4.4)
@@ -253,8 +252,6 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    typogruby (1.0.12)
-      rubypants
     tzinfo (0.3.29)
     unicorn (4.0.1)
       kgio (~> 2.4)
@@ -304,6 +301,5 @@ DEPENDENCIES
   stinker!
   systemu
   taps
-  typogruby
   unicorn
   yettings
