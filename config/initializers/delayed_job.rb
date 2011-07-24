@@ -43,6 +43,7 @@ class SiteArchiveJob < Struct.new(:site_id)
     site = Site.find_by_id(site_id)
     Dir.chdir(site.preview_path) do
       system "cd output; zip -r #{site.url} *"
+      system "rm #{Yetting.archives_path}/#{site.url}.zip"
       system "mv output/#{site.url}.zip #{Yetting.archives_path}/"
     end if site && Yetting.archives_path
   end
