@@ -48,8 +48,8 @@ class SitesController < ApplicationController
 
   def matches?(request)
     first_path_part = request.fullpath.split('/')[1]
-    s = Site.find_by_url(first_path_part)
-    s = Site.find_by_url(request.host.split('.').first) unless s
+    s = Site.find_by_url(request.host.split('.').first) 
+    s = Site.find_by_url(first_path_part) unless s
     if(s)
       request.env['gitgrove_site_url'] = s.url
       request.params['site_url'] = s.url
