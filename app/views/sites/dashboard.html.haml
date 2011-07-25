@@ -3,7 +3,7 @@
   %p This is a list of sites:
   #site_list
     - @sites.each do |s|
-      .site
+      .site{:class => s.state}
         .actions
           - if(current_user.admin?)
             .minibutton= link_to 'Delete', site_path(s), :method => :delete, :confirm => "Are you sure?"
@@ -11,6 +11,10 @@
           .minibutton
             %a{:href => "http://#{with_subdomain(s.url)}/index.html"} Preview
         %p= s.name
+        - if(s.error?)
+          %p Last rebuild experienced an error.
+        - if(s.building? || s.queued?)
+          %p Site will be rebuilt
         - if(current_user.admin?)
           %p= File.join(Yetting.repo_clone_url, File.basename(s.repo_path))
           - if(Yetting.respond_to?(:archives_path))
