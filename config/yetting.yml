@@ -18,10 +18,5 @@ test:
 
 production:
   <<: *defaults
-  repo_storage_path: <%= Rails.root %>/git_sites
-  repo_clone_url: "gitpusshuten@sandbox.osb.co:~/gitgrove"
-  preview_storage_path: <%= Rails.root %>/site_preview
-  archives_path: <%= Rails.root %>/public/site_archives
-  oa:
-    facebook: nil
+  
 
